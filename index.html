@@ -1,34 +1,21 @@
 <!DOCTYPE html>
-<!-- DOCTYPE govori browseru da koristimo HTML5 standard -->
 
 <html lang="sr">
-  <!-- lang="sr" označava da je jezik stranice srpski -->
 
   <head>
     <meta charset="UTF-8" />
-    <!-- UTF-8 omogućava prikaz naših slova (č, ć, š, đ, ž) -->
     <link rel="stylesheet" href="style.css" />
     <title>Login</title>
-    <!-- Naslov taba u browseru -->
   </head>
 
   <body>
-    <!-- Glavni naslov stranice -->
     <h1>Prijava</h1>
 
     <!-- Forma za login -->
-    <!-- id koristimo da bismo u JavaScriptu mogli da "uhvatimo" formu -->
     <form id="loginForm">
       
-      <!-- Label za email polje -->
       <label for="email">Studentski email</label><br />
 
-      <!-- 
-        Input polje za email
-        type="email" -> browser proverava osnovni format email-a
-        id="email" -> koristi se u JavaScriptu
-        required -> forma se ne može poslati ako je prazno
-      -->
       <input
         type="email"
         id="email"
@@ -36,15 +23,8 @@
         required
       /><br /><br />
 
-      <!-- Label za šifru -->
       <label for="password">Šifra</label><br />
 
-      <!-- 
-        Input polje za šifru
-        type="password" -> sakriva karaktere
-        id="password" -> koristi se u JavaScriptu
-        required -> mora biti popunjeno
-      -->
       <input
         type="password"
         id="password"
@@ -52,22 +32,16 @@
         required
       /><br /><br />
 
-      <!-- Dugme koje šalje formu -->
+      <!-- Dugme za prijavljivanje -->
       <button type="submit">Prijavi se</button>
     </form>
 
-    <!-- 
-      Paragraf za prikaz poruka o greškama
-      U JavaScriptu ćemo ovde upisivati tekst
-    -->
     <p id="errorMessage"></p>
     <hr />
 
 <p>Nemaš nalog? <a href="register.html">Registruj se</a></p>
 
 
-    <!-- Povezivanje JavaScript fajla -->
-    <!-- Stavljamo ga na kraj da bi HTML bio već učitan -->
     <script src="js/login.js"></script>
     
   </body>
