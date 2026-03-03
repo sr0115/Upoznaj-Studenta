@@ -1,8 +1,3 @@
-// ===============================
-// FRIEND VIEW – MVP
-// ===============================
-
-// Čitamo parametar iz URL-a: friend.html?user=email
 const params = new URLSearchParams(window.location.search);
 const friendEmail = params.get("user");
 
@@ -30,11 +25,7 @@ if (friendEmail === user.email) {
   document.getElementById("addFriendBtn").textContent = "Ovo si ti";
 }
 
-// ===============================
-// UČITAJ PODATKE PRIJATELJA (ako postoje)
-// ===============================
-
-// MVP: prijateljev profil čuvamo na uređaju pod ključem profile_email
+// UČITAJ PRIJATELJA
 const friendProfileString = localStorage.getItem("profile_" + friendEmail);
 
 if (friendProfileString) {
@@ -49,12 +40,9 @@ if (friendProfileString) {
   }
 }
 
-// ===============================
-// ADD FRIEND LOGIKA
-// ===============================
 
+// Dodavanje prijatelja
 const addFriendBtn = document.getElementById("addFriendBtn");
-// Ako je već u prijateljima → sakrij dugme
 const key = "friends_" + user.email;
 const current = localStorage.getItem(key);
 let friendsArray = current ? JSON.parse(current) : [];
@@ -64,10 +52,8 @@ if (friendsArray.includes(friendEmail)) {
 }
 
 addFriendBtn.addEventListener("click", function () {
-  // Lista prijatelja se čuva pod ključem friends_<ulogovani email>
   const key = "friends_" + user.email;
 
-  // Uzimamo postojeću listu (ako postoji)
   const current = localStorage.getItem(key);
 
   let friendsArray = [];
@@ -75,32 +61,25 @@ addFriendBtn.addEventListener("click", function () {
     friendsArray = JSON.parse(current);
   }
 
-  // Ako već postoji u listi, ne dodaj ponovo
 if (friendsArray.includes(friendEmail)) {
   addFriendBtn.style.display = "none";
   return;
 }
 
-  // Dodaj u listu
   friendsArray.push(friendEmail);
 
-  // Sačuvaj nazad
   localStorage.setItem(key, JSON.stringify(friendsArray));
   addFriendBtn.style.display = "none";
 
   alert("Dodato u prijatelje!");
 });
 
-// ===============================
-// SV PRIJATELJA – OTVARANJE PDF-a
-// ===============================
+
 
 const openFriendCvBtn = document.getElementById("openFriendCvBtn");
 
-// CV se čuva pod ključem cv_<email>
 const friendCvUrl = localStorage.getItem("cv_" + friendEmail);
 
-// Ako postoji, omogućimo dugme
 if (friendCvUrl) {
   openFriendCvBtn.disabled = false;
 }
@@ -115,9 +94,6 @@ openFriendCvBtn.addEventListener("click", function () {
   }
 });
 
-// ===============================
-// NAZAD
-// ===============================
 
 function goBack() {
   window.location.href = "profile.html";
