@@ -1,41 +1,27 @@
-// ===============================
-// PROFIL – MVP (prosto)
-// ===============================
-
-// Uzimamo korisnika iz localStorage
 const storedUser = localStorage.getItem("loggedUser");
 
-// Ako nema ulogovanog korisnika -> vrati na login i prekini
 if (storedUser === null) {
   window.location.href = "index.html";
   throw new Error("Nema ulogovanog korisnika.");
 }
 
-// Pretvaramo string u objekat
 const user = JSON.parse(storedUser);
-// ===============================
-// LOGOUT DUGME
-// ===============================
 
+// LOGOUT DUGME
 const logoutBtn = document.getElementById("logoutBtn");
 
 if (logoutBtn) {
   logoutBtn.addEventListener("click", function () {
-    // Brišemo trenutno ulogovanog korisnika
+    
     localStorage.removeItem("loggedUser");
 
-    // Vraćamo na login
     window.location.href = "index.html";
   });
 }
 
 
 
-// ===============================
-// PREMIUM DUGME U HEDERU
-// (samo vodi na premium.html)
-// ===============================
-
+// PREMIUM DUGME
 const premiumBtn = document.getElementById("premiumBtn");
 
 if (premiumBtn) {
@@ -50,31 +36,23 @@ if (premiumBtn) {
   });
 }
 
-// ===============================
-// PRIKAZ BROJA INDEKSA I GODINE
-// ===============================
 
+// PRIKAZ BROJA INDEKSA I GODINE
 document.getElementById("indexNumber").textContent = user.indexNumber;
 document.getElementById("enrollmentYear").textContent = user.enrollmentYear;
 
-// ===============================
-// IME + OPIS (zaključavanje posle Save)
-// ===============================
-
+// IME + OPIS
 const fullNameInput = document.getElementById("fullNameInput");
 const fullNameText = document.getElementById("fullNameText");
 const descriptionBox = document.getElementById("description");
 const saveButton = document.getElementById("saveProfile");
 
-// Premium dugme za edit (ako postoji u HTML-u)
 const editButton = document.getElementById("editProfileBtn");
 
-// Ako je premium, prikaži edit dugme
 if (editButton && user.isPremium === true) {
   editButton.style.display = "inline";
 }
 
-// Ako je profil već sačuvan ranije, prikaži fiksno i zaključa
 if (user.fullName && user.description) {
   fullNameText.textContent = user.fullName;
   fullNameText.style.display = "inline";
@@ -86,7 +64,6 @@ if (user.fullName && user.description) {
   saveButton.disabled = true;
 }
 
-// Klik na "Sačuvaj profil"
 saveButton.addEventListener("click", function () {
   const nameValue = fullNameInput.value.trim();
   const descValue = descriptionBox.value.trim();
@@ -99,16 +76,13 @@ saveButton.addEventListener("click", function () {
   user.fullName = nameValue;
   user.description = descValue;
 
-  // Čuvamo ulogovanog korisnika
   localStorage.setItem("loggedUser", JSON.stringify(user));
 
-  // Čuvamo i profil podatke pod email ključem (za friend view kasnije)
   localStorage.setItem(
     "profile_" + user.email,
     JSON.stringify({ fullName: user.fullName, description: user.description })
   );
 
-  // Zaključavanje prikaza
   fullNameText.textContent = nameValue;
   fullNameText.style.display = "inline";
   fullNameInput.style.display = "none";
@@ -119,7 +93,7 @@ saveButton.addEventListener("click", function () {
   alert("Profil je sačuvan.");
 });
 
-// Klik na "Edituj profil" (premium)
+// Edituj profil
 if (editButton) {
   editButton.addEventListener("click", function () {
     if (user.isPremium !== true) return;
@@ -136,10 +110,7 @@ if (editButton) {
   });
 }
 
-// ===============================
 // UPLOAD I PRIKAZ PROFILNE SLIKE
-// ===============================
-
 const imageInput = document.getElementById("profileImage");
 const imagePreview = document.getElementById("imagePreview");
 
@@ -153,16 +124,11 @@ imageInput.addEventListener("change", function () {
   }
 });
 
-// ===============================
-// GENERISANJE QR KODA (unikatan po nalogu)
-// QR vodi na friend.html?user=<email>
-// ===============================
-
+// QR kod
 const qrSmall = document.getElementById("qrSmall");
 const qrBig = document.getElementById("qrBig");
 const qrModal = document.getElementById("qrModal");
 
-// Samo ako QR elementi postoje u HTML-u
 if (qrSmall && qrBig && qrModal) {
   const friendLink =
     window.location.origin +
@@ -186,16 +152,11 @@ if (qrSmall && qrBig && qrModal) {
   });
 }
 
-// ===============================
-// SV (CV) upload + otvaranje PDF
-// ===============================
-
+// CV
 const cvInput = document.getElementById("cvFile");
 const openCvButton = document.getElementById("openCvButton");
 
-// Ako elementi postoje
 if (cvInput && openCvButton) {
-  // Ako već postoji CV ranije, omogući dugme
   const oldCv = localStorage.getItem("cv_" + user.email);
   if (oldCv) {
     openCvButton.disabled = false;
@@ -207,7 +168,6 @@ if (cvInput && openCvButton) {
     if (file) {
       const cvUrl = URL.createObjectURL(file);
 
-      // Čuvamo url pod email ključem
       localStorage.setItem("cv_" + user.email, cvUrl);
 
       openCvButton.disabled = false;
@@ -226,10 +186,7 @@ if (cvInput && openCvButton) {
   });
 }
 
-// ===============================
 // NAVIGACIJA
-// ===============================
-
 function goToFriends() {
   window.location.href = "friends.html";
 }
