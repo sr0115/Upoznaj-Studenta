@@ -1,7 +1,3 @@
-// ===============================
-// PREMIUM STRANICA – MVP
-// ===============================
-
 const storedUser = localStorage.getItem("loggedUser");
 
 if (!storedUser) {
@@ -24,16 +20,14 @@ if (user.isPremium === true) {
   statusText.textContent = "Status: Nisi Premium";
 }
 
-// Aktivacija premium (MVP)
+// Aktivacija
 buyBtn.addEventListener("click", function () {
   if (user.isPremium === true) return;
 
   user.isPremium = true;
 
-  // Update loggedUser
   localStorage.setItem("loggedUser", JSON.stringify(user));
 
-  // Update i u usersList (da ostane premium i posle sledećeg logina)
   const usersKey = "usersList";
   const storedUsers = localStorage.getItem(usersKey);
 
@@ -54,7 +48,6 @@ buyBtn.addEventListener("click", function () {
   window.location.reload();
 });
 
-// Nazad na profil
 backBtn.addEventListener("click", function () {
   window.location.href = "profile.html";
 });
