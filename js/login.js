@@ -1,12 +1,9 @@
-// ===============================
-// LOGIN – MVP (sa usersList proverom)
-// ===============================
-
 const loginForm = document.getElementById("loginForm");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const errorMessage = document.getElementById("errorMessage");
 
+// Validacija forme 
 loginForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -15,13 +12,11 @@ loginForm.addEventListener("submit", function (event) {
 
   errorMessage.textContent = "";
 
-  // Provera praznih polja
   if (email === "" || password === "") {
     errorMessage.textContent = "Sva polja su obavezna.";
     return;
   }
 
-  // Provera domena
   const allowedDomain = "@student.fon.bg.ac.rs";
   if (!email.endsWith(allowedDomain)) {
     errorMessage.textContent = "Email mora biti u formatu @student.fon.bg.ac.rs";
@@ -38,14 +33,10 @@ loginForm.addEventListener("submit", function (event) {
     return;
   }
 
-  // ===============================
-  // Provera da li korisnik postoji (usersList)
-  // ===============================
-
+  // Provera da li korisnik postoji
   const usersKey = "usersList";
   const storedUsers = localStorage.getItem(usersKey);
 
-  // Ako nema nijednog registrovanog korisnika
   if (!storedUsers) {
     errorMessage.textContent = "Nema registrovanih korisnika. Registruj se prvo.";
     return;
@@ -63,7 +54,6 @@ loginForm.addEventListener("submit", function (event) {
     }
   }
 
-  // Ako nije nađen
   if (foundUser === null) {
     errorMessage.textContent = "Pogrešan email ili šifra.";
     return;
