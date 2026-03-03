@@ -7,23 +7,17 @@
   </head>
 
   <body>
-    <!-- ===============================
-     HEADER SA PREMIUM DUGMETOM
-=============================== -->
-
+    <!-- Header  -->
 <div id="header">
-  
-  <!-- LEVO: IKONICA -->
+    
   <div class="header-left">
-    <img src="logo.png" alt="Logo" class="header-logo">
+    <img src="./slike/logo.png" alt="Logo" class="header-logo">
   </div>
 
-  <!-- CENTAR: NASLOV -->
   <div class="header-center">
-    <strong>Upoznaj Studenta</strong>
+    <strong>Upoznaj studenta</strong>
   </div>
 
-  <!-- DESNO: DUGMAD -->
   <div class="header-buttons">
     <button id="premiumBtn">Premium</button>
     <button id="logoutBtn">Logout</button>
@@ -60,7 +54,7 @@
   </div>
 
   
-<!-- OPIS preko cele širine -->
+<!-- OPIS -->
 <div class="opis">
   <label for="description">Opis:</label><br />
   <textarea
@@ -75,17 +69,16 @@
   </div>
 </div>
 
-<!-- RED: CV | QR | NAV -->
 <div class="bottom-wrapper">
 
-  <!-- LEVO: CV -->
+  <!-- CV -->
   <div class="biografija">
     <p><strong>CV (PDF):</strong></p>
     <input type="file" id="cvFile" accept="application/pdf" />
     <button id="openCvButton" disabled>Otvori CV</button>
   </div>
 
-  <!-- SREDINA: QR (OBAVEZNO ostaje i modal!) -->
+  <!-- QR kod -->
   <div class="kod">
     <p><strong>Moj QR kod:</strong></p>
     <img id="qrSmall" alt="QR kod" width="120" style="cursor:pointer; border:1px solid #ccc;" />
@@ -96,21 +89,14 @@
     </div>
   </div>
 
-  <!-- DESNO: PRIJATELJI / POSLOVI -->
+  <!-- PRIJATELJI / POSLOVI -->
   <div class="navigacija-donja">
     <button onclick="goToFriends()">Prijatelji</button>
     <button onclick="goToJobs()">Poslovi</button>
   </div>
 
 </div>
-
-
-
-
-
     
-
     <script src="js/profile.js"></script>
   </body>
 </html>
-
