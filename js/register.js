@@ -1,12 +1,8 @@
-// ===============================
-// REGISTER – MVP
-// ===============================
-
 const registerForm = document.getElementById("registerForm");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
 const errorMessage = document.getElementById("errorMessage");
-
+// Provera forme 
 registerForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -15,20 +11,17 @@ registerForm.addEventListener("submit", function (event) {
 
   errorMessage.textContent = "";
 
-  // Provera praznih polja
   if (email === "" || password === "") {
     errorMessage.textContent = "Sva polja su obavezna.";
     return;
   }
 
-  // Provera domena
   const allowedDomain = "@student.fon.bg.ac.rs";
   if (!email.endsWith(allowedDomain)) {
     errorMessage.textContent = "Email mora biti u formatu @student.fon.bg.ac.rs";
     return;
   }
 
-  // Izvlačenje godine i indeksa iz dela pre @
   const prefix = email.split("@")[0];
   const indexNumber = prefix.slice(-4);
   const enrollmentYear = prefix.slice(-8, -4);
@@ -38,7 +31,6 @@ registerForm.addEventListener("submit", function (event) {
     return;
   }
 
-  // Uzimamo listu korisnika
   const usersKey = "usersList";
   const storedUsers = localStorage.getItem(usersKey);
 
@@ -47,7 +39,6 @@ registerForm.addEventListener("submit", function (event) {
     users = JSON.parse(storedUsers);
   }
 
-  // Provera da li već postoji email
   for (let i = 0; i < users.length; i++) {
     if (users[i].email === email) {
       errorMessage.textContent = "Korisnik sa ovim emailom već postoji.";
@@ -55,21 +46,19 @@ registerForm.addEventListener("submit", function (event) {
     }
   }
 
-  // Pravimo korisnika (MVP)
+  // Pravimo korisnika
   const newUser = {
     email: email,
-    password: password, // MVP: čuvamo običan tekst (nije bezbedno, ali je demo)
+    password: password,
     indexNumber: indexNumber,
     enrollmentYear: enrollmentYear,
     isPremium: false
   };
 
-  // Dodaj u listu i sačuvaj
   users.push(newUser);
   localStorage.setItem(usersKey, JSON.stringify(users));
 
   alert("Registracija uspešna! Sada se uloguj.");
 
-  // Prebaci na login
   window.location.href = "index.html";
 });
