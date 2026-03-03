@@ -1,0 +1,344 @@
+/* ===============================
+   Color variables
+================================ */
+:root {
+  --color-primary: #6d5bd0;
+  --color-secondary: #2ec4b6;
+  --color-text: #1f2933;
+  --color-bg: #f8f9fc;
+  --color-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --color-surface: #ffffff;
+  --radius: 10px;
+}
+
+/* ===============================
+   Reset & base
+================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 32px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ===============================
+   Login card layout
+================================ */
+h1,
+form,
+#errorMessage,
+hr,
+p {
+  width: 100%;
+  max-width: 420px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+}
+
+/* Card effect */
+form {
+  background: var(--color-surface);
+  padding: 32px;
+  border-radius: var(--radius);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===============================
+   Labels & inputs
+================================ */
+label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+input {
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--color-border);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input::placeholder {
+  color: var(--color-muted);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(109, 91, 208, 0.15);
+}
+
+/* ===============================
+   Button
+================================ */
+button {
+  margin-top: 12px;
+  padding: 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: white;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+button:hover {
+  background-color: #5a4bc2;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* ===============================
+   Error message
+================================ */
+#errorMessage {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #dc2626;
+  text-align: center;
+}
+
+/* ===============================
+   Footer text & divider
+================================ */
+hr {
+  margin: 28px 0 16px;
+  border: none;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+p {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ===============================
+   Responsive (login)
+================================ */
+@media (max-width: 480px) {
+  form {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ===============================
+   Header
+================================ */
+#header {
+  width: 100%;
+  max-width: 1100px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LEVO */
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  height: 40px;   /* menjaš veličinu ovde */
+}
+
+/* CENTAR - apsolutno centriran */
+.header-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+}
+
+/* DESNO */
+.header-buttons {
+  display: flex;
+  gap: 12px;
+}
+/* ===============================
+   Profile wrappers use full width
+================================ */
+.profilna-podaci-wrapper,
+.opis,
+.bottom-wrapper {
+  width: 100%;
+  max-width: 1100px;
+}
+
+/* ===============================
+   ROW 1: profile + data
+================================ */
+.profilna,
+.podaci {
+  background: var(--color-surface);
+  padding: 20px;
+  border-radius: var(--radius);
+  height: 100%;
+}
+
+.profilna {
+  text-align: center;
+}
+
+.profilna img {
+  margin-top: 12px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profilna input[type="file"] {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.podaci {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centrira sve horizontalno */
+  justify-content: center;
+  text-align: center;    /* centrira tekst */
+}
+.podaci p:first-of-type {
+  margin-bottom: 30px;
+}
+
+#fullNameInput {
+  width: 80%;
+  max-width: 350px;
+  
+}
+
+.profilna-podaci-wrapper {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* ===============================
+   OPIS (full width, separate row)
+================================ */
+.opis {
+  background: var(--color-surface);
+  padding: 20px;
+  border-radius: var(--radius);
+  margin-bottom: 32px; /* odvojen od donjeg reda */
+}
+
+.opis textarea {
+  width: 100%;
+  min-height: 160px;
+  resize: vertical;
+}
+
+.dugmici {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+}
+#editProfileBtn{
+  margin-left: auto;
+}
+/* ===============================
+   DONJI RED: CV | QR | NAV
+================================ */
+.bottom-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* CV levo, QR sredina, NAV desno */
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+/* Kartice */
+.biografija,
+.kod,
+.navigacija-donja {
+  background: var(--color-surface);
+  padding: 20px;
+  border-radius: var(--radius);
+}
+
+/* CV levo */
+.biografija {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* QR centar */
+.kod {
+  text-align: center;
+}
+
+/* NAV desno */
+.navigacija-donja {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+.navigacija-donja button {
+  width: 100%;
+}
+
+/* ===============================
+   Responsive (profile)
+================================ */
+@media (max-width: 900px) {
+  .bottom-wrapper {
+    grid-template-columns: 1fr; /* sve ide jedno ispod drugog */
+  }
+}
+
+@media (max-width: 480px) {
+  .profilna-podaci-wrapper {
+    grid-template-columns: 1fr;
+  }
+}

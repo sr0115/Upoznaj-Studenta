@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Moj profil</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- ===============================
+     HEADER SA PREMIUM DUGMETOM
+=============================== -->
+
+<div id="header">
+  
+  <!-- LEVO: IKONICA -->
+  <div class="header-left">
+    <img src="logo.png" alt="Logo" class="header-logo">
+  </div>
+
+  <!-- CENTAR: NASLOV -->
+  <div class="header-center">
+    <strong>Upoznaj studenta</strong>
+  </div>
+
+  <!-- DESNO: DUGMAD -->
+  <div class="header-buttons">
+    <button id="premiumBtn">Premium</button>
+    <button id="logoutBtn">Logout</button>
+  </div>
+
+</div>
+
+<hr />
+
+    <h1>Moj profil</h1>
+    
+  <div class="profilna-podaci-wrapper">
+      <div class="profilna">
+            <!-- Profilna slika -->
+          <p><strong>Profilna slika:</strong></p>
+          <input type="file" id="profileImage" accept="image/*" /><br /><br />
+          <img id="imagePreview" alt="Profilna slika" width="150" style="display:none;" />
+      </div>
+
+     <div class="podaci">
+          <!-- Ime i prezime -->
+        <p><strong>Ime i prezime:</strong></p>
+        <input id="fullNameInput" type="text" placeholder="Unesi ime i prezime" />
+        <span id="fullNameText" style="display: none;"></span>
+    <br /><br />
+    <!-- Broj indeksa i godina -->
+        <p>
+          <strong>Broj indeksa:</strong>
+          <span id="indexNumber"></span> /
+          <span id="enrollmentYear"></span>
+        </p>    
+    </div>
+
+  </div>
+
+  
+<!-- OPIS preko cele širine -->
+<div class="opis">
+  <label for="description">Opis:</label><br />
+  <textarea
+    id="description"
+    rows="4"
+    placeholder="Napiši nešto o sebi..."
+  ></textarea>
+
+  <div class="dugmici">
+    <button id="saveProfile">Sačuvaj profil</button>
+    <button id="editProfileBtn" style="display:none;">Edituj profil (Premium)</button>
+  </div>
+</div>
+
+<!-- RED: CV | QR | NAV -->
+<div class="bottom-wrapper">
+
+  <!-- LEVO: CV -->
+  <div class="biografija">
+    <p><strong>CV (PDF):</strong></p>
+    <input type="file" id="cvFile" accept="application/pdf" />
+    <button id="openCvButton" disabled>Otvori CV</button>
+  </div>
+
+  <!-- SREDINA: QR (OBAVEZNO ostaje i modal!) -->
+  <div class="kod">
+    <p><strong>Moj QR kod:</strong></p>
+    <img id="qrSmall" alt="QR kod" width="120" style="cursor:pointer; border:1px solid #ccc;" />
+
+    <div id="qrModal" style="display:none;">
+      <p>Klikni bilo gde da zatvoriš</p>
+      <img id="qrBig" alt="Veliki QR kod" width="300" style="border:1px solid #ccc;" />
+    </div>
+  </div>
+
+  <!-- DESNO: PRIJATELJI / POSLOVI -->
+  <div class="navigacija-donja">
+    <button onclick="goToFriends()">Prijatelji</button>
+    <button onclick="goToJobs()">Poslovi</button>
+  </div>
+
+</div>
+
+
+
+
+
+    
+
+    <script src="js/profile.js"></script>
+  </body>
+</html>

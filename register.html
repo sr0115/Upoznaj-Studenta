@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Registracija</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <h1>Registracija</h1>
+
+    <form id="registerForm">
+      <label for="email">Studentski email</label><br />
+      <input
+        type="email"
+        id="email"
+        placeholder="ipXXXXYYYY@student.fon.bg.ac.rs"
+        required
+      />
+      <br /><br />
+
+      <label for="password">Šifra</label><br />
+      <input type="password" id="password" placeholder="Unesi šifru" required />
+      <br /><br />
+
+      <button type="submit">Registruj se</button>
+    </form>
+
+    <p id="errorMessage"></p>
+
+    <hr />
+
+    <p>Imaš nalog? <a href="index.html">Uloguj se</a></p>
+
+    <script src="js/register.js"></script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Poslovi</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <h1>Poslovi</h1>
+
+    <!-- ===============================
+         A) SPISAK POSLOVA
+    ================================ -->
+    <h2>Spisak poslova</h2>
+    <div id="jobsList"></div>
+
+    <hr />
+
+    <!-- ===============================
+         B) DETALJI POSLA
+         (sakriveno dok se ne klikne posao)
+    ================================ -->
+    <div id="jobDetails" style="display: none;">
+      <h2>Detalji posla</h2>
+
+      <p><strong>Naziv:</strong> <span id="detailTitle"></span></p>
+      <p><strong>Kratak opis:</strong> <span id="detailShort"></span></p>
+      <p><strong>Dug opis:</strong> <span id="detailLong"></span></p>
+      <p><strong>Kontakt email:</strong> <span id="detailEmail"></span></p>
+
+      <button id="sendCvBtn">Pošalji CV</button>
+      <button id="closeDetailsBtn">Zatvori</button>
+    </div>
+
+
+    <!-- ===============================
+         C) NUDIM POSAO (PREMIUM)
+    ================================ -->
+    <h2>Nudim posao (Premium)</h2>
+
+    <!-- Ovo se prikazuje ako NIJE premium -->
+    <p id="notPremiumMsg" style="display: none;">
+      Ova opcija je dostupna samo premium korisnicima.
+    </p>
+
+    <!-- Forma za premium korisnika -->
+    <div id="offerJobSection" style="display: none;">
+      <p><strong>Novi oglas:</strong></p>
+
+      <label for="jobTitle">Naziv posla:</label><br />
+      <input id="jobTitle" type="text" /><br /><br />
+
+      <label for="jobShort">Kratak opis:</label><br />
+      <input id="jobShort" type="text" /><br /><br />
+
+      <label for="jobLong">Dug opis:</label><br />
+      <textarea id="jobLong" rows="4" cols="40"></textarea><br /><br />
+
+      <label for="jobEmail">Kontakt email:</label><br />
+      <input id="jobEmail" type="email" /><br /><br />
+
+      <button id="publishJobBtn">Objavi posao</button>
+    </div>
+
+    <hr />
+    <button onclick="goBack()">Nazad na profil</button>
+
+    <script src="js/jobs.js"></script>
+  </body>
+</html>
