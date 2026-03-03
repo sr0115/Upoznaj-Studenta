@@ -1,8 +1,4 @@
-// ===============================
-// JOBS – MVP
-// ===============================
-
-// Provera da li je korisnik ulogovan
+// Provera loga 
 const storedUser = localStorage.getItem("loggedUser");
 if (!storedUser) {
   window.location.href = "index.html";
@@ -11,14 +7,9 @@ if (!storedUser) {
 
 const user = JSON.parse(storedUser);
 
-// ===============================
-// UČITAVANJE POSLOVA (MVP – localStorage)
-// ===============================
-
-// Key gde čuvamo sve poslove
+// Čuvanje posla 
 const jobsKey = "jobs_all";
 
-// Ako nema ništa, napravićemo par demo poslova
 if (!localStorage.getItem(jobsKey)) {
   const demoJobs = [
     {
@@ -40,26 +31,21 @@ if (!localStorage.getItem(jobsKey)) {
   localStorage.setItem(jobsKey, JSON.stringify(demoJobs));
 }
 
-// Uzimamo poslove iz storage-a
 let jobs = JSON.parse(localStorage.getItem(jobsKey));
 
-// ===============================
-// PRIKAZ LISTE POSLOVA
-// ===============================
 
+// PRIKAZ LISTE POSLOVA
 const jobsListDiv = document.getElementById("jobsList");
 
 function renderJobsList() {
-  // očistimo prikaz
   jobsListDiv.innerHTML = "";
 
-  // ako nema poslova
   if (jobs.length === 0) {
     jobsListDiv.textContent = "Nema objavljenih poslova.";
     return;
   }
 
-  // pravimo kartice
+  // kartice poslova
   for (let i = 0; i < jobs.length; i++) {
     const job = jobs[i];
 
@@ -77,7 +63,6 @@ function renderJobsList() {
     shortEl.textContent = job.shortDesc;
     card.appendChild(shortEl);
 
-    // klik na karticu -> detalji
     card.addEventListener("click", function () {
       openDetails(job.id);
     });
@@ -88,9 +73,7 @@ function renderJobsList() {
 
 renderJobsList();
 
-// ===============================
 // DETALJI POSLA + POŠALJI CV
-// ===============================
 
 const detailsDiv = document.getElementById("jobDetails");
 const detailTitle = document.getElementById("detailTitle");
@@ -102,43 +85,39 @@ const sendCvBtn = document.getElementById("sendCvBtn");
 const closeDetailsBtn = document.getElementById("closeDetailsBtn");
 
 let currentJob = null;
-
+// Detalji posla
 function openDetails(jobId) {
-  // nađemo posao po id
   for (let i = 0; i < jobs.length; i++) {
     if (jobs[i].id === jobId) {
       currentJob = jobs[i];
       break;
     }
   }
-
+   
   if (!currentJob) return;
 
-  // popunimo detalje
   detailTitle.textContent = currentJob.title;
   detailShort.textContent = currentJob.shortDesc;
   detailLong.textContent = currentJob.longDesc;
   detailEmail.textContent = currentJob.contactEmail;
 
-  // prikažemo detalje
   detailsDiv.style.display = "block";
 }
 
-// Zatvori detalje
+
 closeDetailsBtn.addEventListener("click", function () {
   detailsDiv.style.display = "none";
   currentJob = null;
 });
 
-// Pošalji CV (MVP)
+// Pošalji CV
 sendCvBtn.addEventListener("click", function () {
   if (!currentJob) return;
 
-  // Uzimamo URL CV-ja ulogovanog korisnika (ako postoji)
+  
   const cvUrl = localStorage.getItem("cv_" + user.email);
 
-  // MVP: ne šaljemo stvarno fajl, nego otvaramo mail klijent
-  // U mail ubacimo tekst gde piše da korisnik ima CV (i njegov email)
+  
   const subject = "Prijava za posao: " + currentJob.title;
 
   let body = "Zdravo,%0D%0A%0D%0A";
@@ -154,19 +133,18 @@ sendCvBtn.addEventListener("click", function () {
   body += "%0D%0A";
   body += "Pozdrav!";
 
-  // Otvaramo mailto link
+  
   window.location.href =
     "mailto:" + currentJob.contactEmail + "?subject=" + encodeURIComponent(subject) + "&body=" + body;
 });
 
-// ===============================
-// PREMIUM: NUDIM POSAO
-// ===============================
+
+// Ponuda posla
+
 
 const notPremiumMsg = document.getElementById("notPremiumMsg");
 const offerJobSection = document.getElementById("offerJobSection");
 
-// Prikaz sekcije u zavisnosti od premium statusa
 if (user.isPremium === true) {
   offerJobSection.style.display = "block";
 } else {
@@ -177,7 +155,6 @@ if (user.isPremium === true) {
 const publishBtn = document.getElementById("publishJobBtn");
 
 publishBtn.addEventListener("click", function () {
-  // Ako nije premium, ne radi ništa (sigurnost)
   if (user.isPremium !== true) return;
 
   const title = document.getElementById("jobTitle").value.trim();
@@ -190,7 +167,6 @@ publishBtn.addEventListener("click", function () {
     return;
   }
 
-  // Napravimo novi ID (najveći + 1)
   let newId = 1;
   if (jobs.length > 0) {
     newId = jobs[jobs.length - 1].id + 1;
@@ -208,7 +184,6 @@ publishBtn.addEventListener("click", function () {
   jobs.push(newJob);
   localStorage.setItem(jobsKey, JSON.stringify(jobs));
 
-  // Očistimo polja
   document.getElementById("jobTitle").value = "";
   document.getElementById("jobShort").value = "";
   document.getElementById("jobLong").value = "";
@@ -216,13 +191,8 @@ publishBtn.addEventListener("click", function () {
 
   alert("Posao je objavljen!");
 
-  // Osvežimo listu
   renderJobsList();
 });
-
-// ===============================
-// NAZAD
-// ===============================
 
 function goBack() {
   window.location.href = "profile.html";
