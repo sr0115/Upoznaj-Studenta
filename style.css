@@ -185,7 +185,8 @@ a:hover {
 }
 
 .header-logo {
-  height: 40px;   /* menjaš veličinu ovde */
+   height: 100px;   /* menjaš veličinu ovde */
+   border-radius: 50%;
 }
 
 /* CENTAR - apsolutno centriran */
@@ -341,4 +342,5 @@ a:hover {
   .profilna-podaci-wrapper {
     grid-template-columns: 1fr;
   }
+
 }
